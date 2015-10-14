@@ -1,4 +1,4 @@
-module Untitled where
+module Main where
 
 fact i = if i <= 1 then 1 else i * fact (i - 1)
 strfact sx =
