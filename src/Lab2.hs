@@ -19,3 +19,4 @@ remove :: BinaryTree -> Integer -> BinaryTree
 remove (Empty) :: putStrLn "error: empty tree"
 remove (Node left x right) a
     | a > x = Node left x remove right a
+    | a < x = Node remove left a x right
