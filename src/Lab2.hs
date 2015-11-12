@@ -10,6 +10,12 @@ emptyTree = Empty
 insert :: BinaryTree -> Integer -> BinaryTree
 insert (Empty) a = Node Empty a Empty
 insert (Node left x right) a 
-if a < x then Node left x (insert right a)
-    else if a > x then Node right x (insert left a)
-    else if a == x then Node left a right
+    | a > x = Node left x insert right a
+    | a < x = Node insert left a x right
+    | a == x = Node left x right
+
+--Удаление элемента
+remove :: BinaryTree -> Integer -> BinaryTree
+remove (Empty) :: putStrLn "error: empty tree"
+remove (Node left x right) a
+    | a > x = Node left x remove right a
