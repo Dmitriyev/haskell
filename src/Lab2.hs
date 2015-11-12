@@ -9,6 +9,7 @@ emptyTree = Empty
 -- Добавления элемента 
 insert :: BinaryTree -> Integer -> BinaryTree
 insert (Empty) a = Node Empty a Empty
-insert (Node left x right) a = if a < x then a = Node left x (insert right a)
+insert (Node left x right) a 
+if a < x then Node left x (insert right a)
     else if a > x then Node right x (insert left a)
-    else if a = x then Node left a right
+    else if a == x then Node left a right
