@@ -23,14 +23,14 @@ remove (Node left x right) a
     | a == x =
         if isEmpty right
         then left
-        else Node left leftmost right'        
+        else Node left leftmost right'
             where
                 isEmpty Empty = True
                 isEmpty _ = False
                 (leftmost, right') = deleteleftmost right
-                where 
-                    deleteleftmost (Node Empty x right) = (x, right)
-                    deleteleftmost (Node left x right) = deleteleftmost left
+                    where
+                        deleteleftmost (Node Empty x right) = (x, right)
+                        deleteleftmost (Node left x right) = deleteleftmost left
                     
                 
         
