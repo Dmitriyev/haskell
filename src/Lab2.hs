@@ -45,9 +45,11 @@ nearestGE :: BinaryTree -> Integer -> Integer
 nearestGE Empty x = error "No such element"
 nearestGE (Node left x right) a
     | a == x = a
-    | a > x = if isEmpty right then x else nearestGE right 
-    | a < x = findMoreThenA Node x a
+    | a > x = if isEmpty right then error "No such element" else nearestGE right a 
+    | a < x = findMoreThenA'ButLessThenX left x a
         where
             isEmpty Empty = True
             isEmpty _ = False
-            findMoreThenA 
+            findMoreThenA'ButLessThenX (Node left b right) x a 
+                | b < a = x
+                | b > a = findMoreThenA'ButLessThenX left a b
