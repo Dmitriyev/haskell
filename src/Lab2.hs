@@ -21,7 +21,16 @@ remove (Node left x right) a
     | a > x = Node left x (remove right a)
     | a < x = Node (remove left a) x right
     | a == x =
-        let if isEmpty right
+        if isEmpty right
         then left
-        else Node 
+        else Node left leftmost right'        
+            where
+                isEmpty Empty = True
+                isEmpty _ = False
+                (leftmost, right') = deleteleftmost right
+                where 
+                    deleteleftmost (Node Empty x right) = (x, right)
+                    deleteleftmost (Node left x right) = deleteleftmost left
+                    
+                
         
