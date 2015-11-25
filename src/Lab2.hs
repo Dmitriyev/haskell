@@ -31,6 +31,23 @@ remove (Node left x right) a
                     where
                         deleteleftmost (Node Empty x right) = (x, right)
                         deleteleftmost (Node left x right) = deleteleftmost left
-                    
-                
-        
+
+--Поиск элемента
+containsElement :: BinaryTree -> Integer -> Bool
+containsElement (Empty) a  = False
+containsElement (Node left x right) a 
+    | a == x = True
+    | a < x  = containsElement left a
+    | a > x  = containsElement right a
+
+--Поиск в дереве наименьшего элемента, который больше или равен заданному
+nearestGE :: BinaryTree -> Integer -> Integer
+nearestGE Empty x = error "No such element"
+nearestGE (Node left x right) a
+    | a == x = a
+    | a > x = if isEmpty right then x else nearestGE right 
+    | a < x = findMoreThenA Node x a
+        where
+            isEmpty Empty = True
+            isEmpty _ = False
+            findMoreThenA 
