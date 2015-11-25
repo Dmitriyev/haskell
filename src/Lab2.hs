@@ -51,5 +51,24 @@ nearestGE (Node left x right) a
             isEmpty Empty = True
             isEmpty _ = False
             findMoreThenA'ButLessThenX (Node left b right) x a 
-                | b < a = x
+                | b < a = a
                 | b > a = findMoreThenA'ButLessThenX left a b
+
+--Создание дерева из списка
+treeFromList :: [Integer] -> BinaryTree
+treeFromList [] = emptyTree
+treeFromList (h : t) = insert (treeFromList t) h
+
+--Создания списка из дерева
+listFromTree :: BinaryTree -> [Integer]
+listFromTree Empty=[]
+listFromTree (Node left x right) = (listFromTree left ++ [x]) ++ listFromTree right
+
+--Проверка
+test = listFromTree (emptyTree `insert` 1 `insert` 2 `insert` 4 `insert` 3 `remove`4 `insert` 9 `insert` 12 `insert` 14)
+a = treeFromList test
+b = nearestGE a 11
+
+main = do
+    putStrLn(show test)
+    putStrLn(show b)
